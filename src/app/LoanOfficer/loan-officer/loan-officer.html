@@ -1,0 +1,85 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card p-4">
+        <h3 class="mb-4">{{ formMode === 'add' ? 'Add New Loan Officer' : 'Update Loan Officer' }}</h3>
+        <form [formGroup]="officerForm" (ngSubmit)="onFormSubmit()">
+          <div class="form-group mb-3">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" formControlName="firstName" class="form-control">
+            <div class="text-danger" *ngIf="officerForm.get('firstName')?.invalid && officerForm.get('firstName')?.touched">
+              First name is required.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" formControlName="lastName" class="form-control">
+            <div class="text-danger" *ngIf="officerForm.get('lastName')?.invalid && officerForm.get('lastName')?.touched">
+              Last name is required.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+            <div class="text-danger" *ngIf="officerForm.get('email')?.invalid && officerForm.get('email')?.touched">
+              <small *ngIf="officerForm.get('email')?.errors?.['required']">Email is required.</small>
+              <small *ngIf="officerForm.get('email')?.errors?.['email']">Invalid email address.</small>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="contactNumber">Contact Number</label>
+            <input type="tel" id="contactNumber" formControlName="contactNumber" class="form-control">
+            <div class="text-danger" *ngIf="officerForm.get('contactNumber')?.invalid && officerForm.get('contactNumber')?.touched">
+              <small *ngIf="officerForm.get('contactNumber')?.errors?.['required']">Contact number is required.</small>
+              <small *ngIf="officerForm.get('contactNumber')?.errors?.['pattern']">Invalid contact number format.</small>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="city">City</label>
+            <input type="text" id="city" formControlName="city" class="form-control">
+            <div class="text-danger" *ngIf="officerForm.get('city')?.invalid && officerForm.get('city')?.touched">
+              City is required.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" [disabled]="officerForm.invalid">
+            {{ formMode === 'add' ? 'Add Officer' : 'Update Officer' }}
+          </button>
+          <button type="button" class="btn btn-secondary w-100 mt-2" (click)="resetForm()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card p-4">
+        <h3 class="mb-4">Loan Officers</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Contact Number</th>
+              <th>City</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let officer of officers">
+              <td>{{ officer.loanOfficerId }}</td>
+              <td>{{ officer.firstName }}</td>
+              <td>{{ officer.lastName }}</td>
+              <td>{{ officer.email }}</td>
+              <td>{{ officer.contactNumber }}</td>
+              <td>{{ officer.city }}</td>
+              <td>
+                <button class="btn btn-warning btn-sm me-2" (click)="onSelectOfficer(officer)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="onDeleteOfficer(officer.loanOfficerId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

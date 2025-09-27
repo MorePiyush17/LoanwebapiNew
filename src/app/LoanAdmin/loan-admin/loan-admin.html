@@ -1,0 +1,17 @@
+<h2>welcome Admin </h2>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a routerLink="/admin/dashboard" routerLinkActive="active" class="list-group-item list-group-item-action">Dashboard</a>
+                <a routerLink="/admin/loan-schemes" routerLinkActive="active" class="list-group-item list-group-item-action">Manage Loan Schemes</a>
+                <a routerLink="/admin/loan-officers" routerLinkActive="active" class="list-group-item list-group-item-action">Manage Loan Officers</a>
+                <a routerLink="/admin/customers" routerLinkActive="active" class="list-group-item list-group-item-action">View Customers</a>
+                <a routerLink="/admin/reports" routerLinkActive="active" class="list-group-item list-group-item-action">Generate Reports</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

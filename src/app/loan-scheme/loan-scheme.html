@@ -1,0 +1,83 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card p-4">
+        <h3 class="mb-4">{{ formMode === 'add' ? 'Add New Loan Scheme' : 'Update Loan Scheme' }}</h3>
+        <form [formGroup]="schemeForm" (ngSubmit)="onFormSubmit()">
+          <div class="form-group mb-3">
+            <label for="schemeName">Scheme Name</label>
+            <input type="text" id="schemeName" formControlName="schemeName" class="form-control">
+            <div class="text-danger" *ngIf="schemeForm.get('schemeName')?.invalid && schemeForm.get('schemeName')?.touched">
+              Scheme name is required.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="interestRate">Interest Rate (%)</label>
+            <input type="number" id="interestRate" formControlName="interestRate" class="form-control">
+            <div class="text-danger" *ngIf="schemeForm.get('interestRate')?.invalid && schemeForm.get('interestRate')?.touched">
+              Interest rate is required and must be positive.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="maxAmount">Max Amount</label>
+            <input type="number" id="maxAmount" formControlName="maxAmount" class="form-control">
+            <div class="text-danger" *ngIf="schemeForm.get('maxAmount')?.invalid && schemeForm.get('maxAmount')?.touched">
+              Max amount is required and must be positive.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="durationsInMonths">Duration (Months)</label>
+            <input type="number" id="durationsInMonths" formControlName="durationsInMonths" class="form-control">
+            <div class="text-danger" *ngIf="schemeForm.get('durationsInMonths')?.invalid && schemeForm.get('durationsInMonths')?.touched">
+              Duration is required and must be positive.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="description">Description</label>
+            <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+            <div class="text-danger" *ngIf="schemeForm.get('description')?.invalid && schemeForm.get('description')?.touched">
+              Description is required.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" [disabled]="schemeForm.invalid">
+            {{ formMode === 'add' ? 'Add Scheme' : 'Update Scheme' }}
+          </button>
+          <button type="button" class="btn btn-secondary w-100 mt-2" (click)="resetForm()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card p-4">
+        <h3 class="mb-4">Loan Schemes</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Interest Rate</th>
+              <th>Max Amount</th>
+              <th>Duration (Months)</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let scheme of schemes">
+              <td>{{ scheme.schemeId }}</td>
+              <td>{{ scheme.schemeName }}</td>
+              <td>{{ scheme.interestRate }}%</td>
+              <td>₹ {{ scheme.maxAmount | number }}</td>
+              <td>{{ scheme.durationsInMonths }}</td>
+              <td>{{ scheme.description }}</td>
+              <td>
+                <button class="btn btn-warning btn-sm me-2" (click)="onSelectScheme(scheme)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="onDeleteScheme(scheme.schemeId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

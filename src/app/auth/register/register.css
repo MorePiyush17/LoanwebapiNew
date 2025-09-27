@@ -1,0 +1,124 @@
+/* Overall page container: Centers the card */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Use min-height to allow content to push it if needed */
+  background-color: #f4f7f6; /* Soft light gray background */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  padding: 20px; /* Add some padding around the card */
+  box-sizing: border-box; /* Include padding in element's total width/height */
+}
+
+/* The card that holds the registration form and title */
+.register-card {
+  background: #ffffff; /* White background for the card */
+  padding: 40px;
+  border-radius: 12px; /* Slightly rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100%; /* Take full width up to max-width */
+  max-width: 450px; /* Max width for the card, can be adjusted */
+  text-align: center; /* Center content inside the card */
+  border: 1px solid #e0e0e0; /* Light border */
+}
+
+/* Styling for the main title inside the card */
+.register-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333; /* Darker text for title */
+  margin-bottom: 30px; /* Space below the title */
+}
+
+/* Styling for each form field group (label + input) */
+.form-group {
+  text-align: left; /* Align labels and inputs to the left */
+  margin-bottom: 20px; /* Space between form groups */
+}
+
+.form-group label {
+  display: block; /* Make label take its own line */
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #555; /* Slightly lighter text for labels */
+  margin-bottom: 8px; /* Space between label and input */
+}
+
+/* Styling for all input fields */
+.form-group input {
+  width: calc(100% - 24px); /* Full width minus padding for box-sizing */
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 8px; /* Rounded input fields */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition on focus */
+}
+
+.form-group input:focus {
+  border-color: #28a745; /* Green border on focus */
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15); /* Green glow on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Styling for the action buttons container */
+.form-actions {
+  margin-top: 30px; /* Space above the button */
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  border: none; /* No border */
+  border-radius: 8px;
+  background-color: #28a745; /* Vibrant green for register button */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s; /* Smooth transitions for hover/active */
+  display: flex; /* Use flex to align content if you add spinner later */
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Space between text and spinner */
+}
+
+button[type="submit"]:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+button[type="submit"]:active {
+  transform: scale(0.99); /* Slight press effect */
+}
+
+button[type="submit"]:disabled {
+  background-color: #a2d2a4; /* Lighter green when disabled */
+  cursor: not-allowed;
+}
+
+/* Error messages below inputs and general error messages */
+.error-message {
+  color: #d9534f; /* Red for errors */
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block; /* Ensure it takes its own line */
+  text-align: left;
+}
+
+/* For links like "Already have an account?" */
+.extra-links {
+  margin-top: 25px; /* Space above links */
+  font-size: 0.9rem;
+  color: #777; /* Gray text */
+}
+
+.extra-links a {
+  color: #007bff; /* Blue for clickable links */
+  text-decoration: none; /* No underline by default */
+  transition: color 0.3s;
+}
+
+.extra-links a:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: #0056b3; /* Darker blue on hover */
+}

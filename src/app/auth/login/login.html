@@ -1,0 +1,50 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2 class="login-title">Welcome Back</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        />
+        <div class="error" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          required
+        />
+        <div class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+          <small>Password is required</small>
+        </div>
+      </div>
+      <button type="submit">
+        <span *ngIf="loading" class="spinner"></span> Login
+      </button>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="extra-links">
+        <a routerLink="/forgot-password">Forgot password?</a>
+        <span> | </span>
+        <a routerLink="/register">Create account</a>
+      </div>
+    </form>
+  </div>
+</div>

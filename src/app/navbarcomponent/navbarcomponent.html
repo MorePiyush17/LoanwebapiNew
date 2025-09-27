@@ -1,0 +1,95 @@
+<!-- navbar.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/" *ngIf="isLoggedIn">
+      <i class="fas fa-hand-holding-usd"></i> Loan<span class="text-success">Manager</span>
+    </a>
+    <a class="navbar-brand" routerLink="/login" *ngIf="!isLoggedIn">
+      <i class="fas fa-hand-holding-usd"></i> Loan<span class="text-success">Manager</span>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Public routes (when not logged in) -->
+        <ng-container *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">
+              <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">
+              <i class="fas fa-user-plus"></i> Sign Up
+            </a>
+          </li>
+        </ng-container>
+
+        <!-- Protected routes (when logged in) -->
+        <ng-container *ngIf="isLoggedIn">
+          <!-- Dashboard - available to all users -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+              <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+          </li>
+
+          <!-- Customer specific routes -->
+          <li class="nav-item" *ngIf="isCustomer()">
+            <a class="nav-link" routerLink="/my-loans" routerLinkActive="active">
+              <i class="fas fa-file-contract"></i> My Loans
+            </a>
+          </li>
+
+          <!-- Loan Officer specific routes -->
+          <li class="nav-item" *ngIf="isLoanOfficer()">
+            <a class="nav-link" routerLink="/loan-officer" routerLinkActive="active">
+              <i class="fas fa-user-tie"></i> Loan Officer
+            </a>
+          </li>
+
+          <!-- Admin specific routes -->
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/loan-scheme" routerLinkActive="active">
+              <i class="fas fa-list-alt"></i> Loan Schemes
+            </a>
+          </li>
+          
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/loan-admin" routerLinkActive="active">
+              <i class="fas fa-user-shield"></i> Admin Panel
+            </a>
+          </li>
+
+          <!-- Profile and Logout -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+               data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user"></i> Profile
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/profile">
+                <i class="fas fa-user-edit"></i> Edit Profile
+              </a></li>
+              <li><a class="dropdown-item" routerLink="/settings">
+                <i class="fas fa-cog"></i> Settings
+              </a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="logout()" style="cursor: pointer;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a></li>
+            </ul>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid p-0">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <i class="fas fa-hand-holding-usd"></i> Loan<span class="text-success">Manager</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <ng-container *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Sign Up</a>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/loan-scheme" routerLinkActive="active">Loan Scheme</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/loan-officer" routerLinkActive="active">Loan Officer</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/loan-admin" routerLinkActive="active">Loan Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid p-0">
+  <router-outlet></router-outlet>
+</div>
